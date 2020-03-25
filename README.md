@@ -1,0 +1,2 @@
+# Hello Functions .NET Core
+
