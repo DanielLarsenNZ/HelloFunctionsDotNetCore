@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "AzureWebJobsStorage": "",
+  "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+  "GetUrls": "https://www.microsoft.com/;https://www.google.com/;https://www.dropbox.com/",
+  "Blob1.StorageConnectionString": "",
+  "Blob2.StorageConnectionString": "",
+  "Blob.Path": "hellofunctionsdotnetcore/test.txt"
+}

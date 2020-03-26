@@ -1,1 +1,4 @@
 GET http://localhost:7071/api/GetHealth
+
+###
+GET https://hellofunctionsdotnetcore-aue.azurewebsites.net/api/GetHealth
