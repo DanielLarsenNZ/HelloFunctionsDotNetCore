@@ -3,6 +3,8 @@
 A simple Hello World Azure Function written in .Net Core with an HTTP Trigger Binding and a couple of
 features for testing.
 
+> This Function is usually running here: <https://hellofunctionsdotnetcore-aue.azurewebsites.net/api/GetHealth>
+
 ## Getting started
 
 You will need:
@@ -15,6 +17,7 @@ You will need:
 git clone https://github.com/DanielLarsenNZ/HelloFunctionsDotNetCore.git
 cd HelloFunctionsDotNetCore
 
+# Alter the hardcoded variables in these files for your own use.
 ./deploy.ps1
 ./publish.ps1
 ```
