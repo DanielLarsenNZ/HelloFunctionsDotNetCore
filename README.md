@@ -3,7 +3,9 @@
 A simple Hello World Azure Function written in .Net Core with an HTTP Trigger Binding and a couple of
 features for testing.
 
-> This Function is usually running here: <https://hellofunctionsdotnetcore-aue.azurewebsites.net/api/GetHealth>
+<https://hellofunctionsdotnetcore-aue.azurewebsites.net/api/GetHealth>
+
+> See also [DanielLarsenNZ/HelloAspDotNetCore](https://github.com/DanielLarsenNZ/HelloAspDotNetCore)
 
 ## Getting started
 
