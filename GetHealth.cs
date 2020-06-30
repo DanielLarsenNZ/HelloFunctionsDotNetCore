@@ -50,8 +50,6 @@ namespace HelloFunctionsDotNetCore
 
             await GetBlobs(_cloudBlobClients, result, _config);
 
-            await GetStatus(req, _http, result);
-
             return new JsonResult(result);
         }
 
@@ -128,35 +126,5 @@ namespace HelloFunctionsDotNetCore
 
             result.Add(uri.Host, responseResult);
         }
-
-        private async Task GetStatus(HttpRequest httpRequest, HttpClient http, Dictionary<string, object> result)
-        {
-            try
-            {
-                var response = await http.GetAsync($"http://{httpRequest.Host}/admin/host/status/");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    result.Add("status", System.Text.Json.JsonSerializer.Deserialize<Status>(json));
-                }
-                else
-                {
-                    result.Add("status", new { response.StatusCode, response.ReasonPhrase });
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Add("status", new { Exception = ex.Message });
-            }
-        }
-    }
-
-    internal class Status
-    {
-            public string id { get; set; }
-            public string state { get; set; }
-            public string version { get; set; }
-            public string versionDetails { get; set; }
-            public int processUptime { get; set; }
     }
 }
