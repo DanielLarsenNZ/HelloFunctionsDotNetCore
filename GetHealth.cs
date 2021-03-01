@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -50,7 +51,42 @@ namespace HelloFunctionsDotNetCore
 
             await GetBlobs(_cloudBlobClients, result, _config);
 
+            await GetSql(result, _config);
+
             return new JsonResult(result);
+        }
+
+        private async Task GetSql(
+            Dictionary<string, object> result,
+            IConfiguration config)
+        {
+            string connString = config["Sql.ConnectionString"];
+            if (string.IsNullOrEmpty(connString)) return;
+
+            try
+            {
+                using (var connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    string sql = "SELECT @@VERSION";
+
+                    using (var command = new SqlCommand(sql, connection))
+                    {
+                        var commandResult = await command.ExecuteScalarAsync();
+                        result.Add("GetSql", commandResult);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Add(
+                    "GetSql",
+                    new Dictionary<string, string>
+                    {
+                        { "Exception.GetType().FullName", ex.GetType().FullName },
+                        { "Exception.Message", ex.Message }
+                    });
+            }
         }
 
         private async Task GetBlobs(
