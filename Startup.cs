@@ -33,6 +33,11 @@ namespace HelloFunctionsDotNetCore
 
             builder.Services.AddSingleton<IConfiguration>(config);
 
+            if (!string.IsNullOrEmpty(config["Startup.ThrowException"]))
+            {
+                throw new Exception($"App Setting \"Startup.ThrowException\" is set. Throwing Exception in Startup.Configure. Setting value is {config["Startup.ThrowException"]}");
+            }
+
             builder.Services.AddSingleton((s) =>
             {
                 var http = new HttpClient();
